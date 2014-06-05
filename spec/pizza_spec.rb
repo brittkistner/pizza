@@ -1,5 +1,9 @@
 require './pizza'
 
+# before  # use let
+#   pizza = Pizza.new
+# end
+
 describe Pizza do
   describe '.initialize' do
     it 'records all of the toppings' do
@@ -15,6 +19,17 @@ describe Pizza do
       pizza = Pizza.new()
       expect(pizza.toppings.size).to eq(1)
       expect(pizza.toppings.first.name).to eq('cheese')
+    end
+
+    it 'returns true if the toppings on a pizza are vegetarian' do
+      pizza = Pizza.new()
+      expect(pizza.vegetarian?).to eq(true)
+    end
+
+    it 'adds topping to the toppings array' do
+      pizza = Pizza.new()
+      pizza.add_topping("olives", vegetarian: true)
+      expect(pizza.toppings.last.name).to eq('olives')
     end
   end
 end
